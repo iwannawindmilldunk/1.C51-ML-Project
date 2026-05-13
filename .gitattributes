@@ -1,0 +1,8 @@
+# Store large model/cache artifacts through Git LFS when the repository is pushed with git.
+*.keras filter=lfs diff=lfs merge=lfs -text
+*.parquet filter=lfs diff=lfs merge=lfs -text
+"Colab Notebooks/neso_historic_generation_mix.csv" filter=lfs diff=lfs merge=lfs -text
+"Colab Notebooks/cache/lgbm_hh.txt" filter=lfs diff=lfs merge=lfs -text
+
+# Notebooks are text JSON and should remain reviewable.
+*.ipynb text eol=lf

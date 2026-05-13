@@ -1,0 +1,36 @@
+{
+  "lookback": 96,
+  "train_stride": 8,
+  "benchmark_households": 120,
+  "dynamic": [
+    "energy",
+    "temperature",
+    "apparentTemperature",
+    "humidity",
+    "windSpeed",
+    "hdd",
+    "cdd",
+    "is_holiday",
+    "is_weekend",
+    "hh_sin",
+    "hh_cos",
+    "dow_sin",
+    "dow_cos"
+  ],
+  "static_num": [
+    "household_train_mean"
+  ],
+  "static_cat": [
+    "Acorn_grouped",
+    "stdorToU"
+  ],
+  "static_onehot_cols": [
+    "household_train_mean",
+    "Acorn_grouped_ACORN-U",
+    "Acorn_grouped_Adversity",
+    "Acorn_grouped_Affluent",
+    "Acorn_grouped_Comfortable",
+    "stdorToU_Std",
+    "stdorToU_ToU"
+  ]
+}

@@ -1,0 +1,8 @@
+scenario,delta_demand_pct,delta_peak_pct,total_kgCO2,delta_emissions_pct,kgCO2_saved
+Observed baseline,0.0,0.0,194344.92,0.0,0.0
+Cold winter −2°C,0.21,0.22,194756.08,0.21,-411.1599999999744
+Severe cold −3°C,0.3,0.33,194945.93,0.31,-601.0099999999802
+Retrofit 10%,-10.03,-9.96,174847.95,-10.03,19496.97
+Cold + retrofit 10%,-9.87,-9.79,175161.16,-9.87,19183.76000000001
+Cold + retrofit + ToU flexibility,-10.6,-16.1,173691.46,-10.63,20653.46000000002
+Strong policy package,-15.84,-23.28,163486.83,-15.88,30858.090000000026

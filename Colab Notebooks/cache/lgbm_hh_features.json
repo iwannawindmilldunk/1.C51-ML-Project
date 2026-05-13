@@ -1,0 +1,36 @@
+{
+  "num": [
+    "temperature",
+    "apparentTemperature",
+    "humidity",
+    "windSpeed",
+    "pressure",
+    "dewPoint",
+    "visibility",
+    "hdd",
+    "cdd",
+    "is_holiday",
+    "is_weekend",
+    "hour",
+    "half_hour",
+    "dow",
+    "month",
+    "lag_1",
+    "lag_2",
+    "lag_48",
+    "lag_336",
+    "rolling_mean_1d",
+    "rolling_std_1d",
+    "rolling_mean_7d",
+    "rolling_std_7d",
+    "household_train_mean"
+  ],
+  "cat": [
+    "Acorn",
+    "Acorn_grouped",
+    "stdorToU",
+    "icon",
+    "precipType"
+  ],
+  "best_iteration": 5992
+}
