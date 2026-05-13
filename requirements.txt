@@ -1,7 +1,9 @@
 numpy
 pandas
 pyarrow
+fastparquet
 scikit-learn
+joblib
 lightgbm
 tensorflow
 keras
@@ -10,5 +12,6 @@ seaborn
 shap
 requests
 kagglehub
+ipython
 jupyter
 ipykernel

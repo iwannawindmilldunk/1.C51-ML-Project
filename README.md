@@ -62,6 +62,13 @@ See `data/README.md` for download sources and exact expected layout.
 
 Python 3.10 or 3.11 is recommended.
 
+This repository uses Git LFS for the larger model/carbon files. After cloning, make sure LFS files are pulled:
+
+```bash
+git lfs install
+git lfs pull
+```
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate

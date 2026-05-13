@@ -45,4 +45,6 @@ The full London smart meter dataset is roughly 10 GB unzipped. GitHub blocks reg
 - Large derived feature caches are placed under `data/processed/` and ignored by Git.
 - Larger model/carbon artifacts are stored through Git LFS where needed.
 
+After cloning, run `git lfs pull` so the LFS-tracked model and carbon files are available locally.
+
 To reproduce the full pipeline, download the raw dataset into `data/raw/smart_meter_data/` or let `notebooks/01_model_training.ipynb` download it, then run the notebooks in order from the repository root.
