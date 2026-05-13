@@ -1,59 +1,55 @@
 # Smart Meter Electricity Demand Forecasting and Emissions Analysis
 
-This repository contains the code and reproducibility notes for a machine learning class project on household electricity demand forecasting and carbon emissions analysis for London smart meter data.
+This repository contains the clean, runnable code submission for a machine learning class project on London household electricity demand forecasting and carbon emissions analysis.
 
-The project forecasts half-hourly household electricity consumption, compares classical and neural approaches, links predicted electricity demand to UK grid carbon intensity, and evaluates policy scenarios such as cold-weather shocks, retrofits, and time-of-use flexibility.
+The project forecasts half-hourly smart meter electricity consumption, compares classical and neural models, links demand to UK grid carbon intensity, and evaluates sustainability scenarios including cold-weather stress, retrofits, and time-of-use flexibility.
 
-## Sustainability Motivation
+## Repository Structure
 
-Electricity demand forecasting helps grid operators and policymakers plan for peak load, target efficiency programs, and estimate the carbon impact of demand-side interventions. This project connects household-level load forecasts to carbon intensity so that model outputs can inform practical sustainability decisions, not only prediction accuracy.
+```text
+.
+|-- notebooks/
+|   |-- 01_model_training.ipynb
+|   |-- 02_demand_policy_scenarios.ipynb
+|   |-- 03_carbon_emissions_analysis.ipynb
+|   `-- archive/
+|-- data/
+|   |-- README.md
+|   |-- carbon/
+|   `-- metadata/
+|-- models/
+|-- results/
+|-- docs/
+|-- scripts/
+|-- requirements.txt
+`-- README.md
+```
 
-## Repository Contents
+## Main Notebooks
 
-- `Colab Notebooks/Machine Learning Class Project.ipynb`  
-  Main modeling notebook. It loads and cleans smart meter data, samples households, builds features, trains baselines, Ridge, LightGBM, and LSTM models, and reports evaluation results.
+- `notebooks/01_model_training.ipynb`  
+  Cleans and samples the smart meter data, merges weather/holiday/household covariates, builds the feature panel, and trains the seasonal naive, Ridge, LightGBM, and LSTM models.
 
-- `Final Code Submissions/[Code Rep]_Policy Description and Scenario Analysis for Demand.ipynb`  
-  Demand-side scenario analysis using the best-performing model.
+- `notebooks/02_demand_policy_scenarios.ipynb`  
+  Uses the trained LightGBM model to evaluate demand-side counterfactual scenarios.
 
-- `Final Code Submissions/Scenario Modeling and Carbon Emissions.ipynb`  
-  Carbon emissions scenario analysis using demand predictions and NESO carbon intensity data.
+- `notebooks/03_carbon_emissions_analysis.ipynb`  
+  Combines scenario demand predictions with NESO carbon intensity to estimate emissions impacts.
 
-- `Colab Notebooks/Scenario Modeling Copy.ipynb` and `Colab Notebooks/Untitled0.ipynb`  
-  Supporting scenario analysis notebooks and figure/result generation.
+- `notebooks/archive/`  
+  Earlier supporting notebooks kept for traceability, not the primary execution path.
 
-- `Colab Notebooks/scenario_emissions_results.csv`  
-  Final scenario summary used in the report.
+## Data
 
-- `Colab Notebooks/scenario_emissions_chart.png`  
-  Final scenario visualization used in the report/presentation.
+Tracked data files are limited to small metadata, weather, results, and the NESO carbon-intensity CSV. Full raw smart meter block data is intentionally not committed because the unzipped dataset is roughly 10 GB.
 
-- `Colab Notebooks/cache/`  
-  Model metadata and cached model artifacts where available. Large derived feature caches are excluded from Git and can be regenerated.
+Expected raw data location for full reruns:
 
-- `data/README.md`  
-  Data source, expected local layout, and large-file policy.
+```text
+data/raw/smart_meter_data/
+```
 
-- `docs/GOOGLE_DRIVE_DOCUMENTS.md`  
-  Links to the live shared Google Docs and Slides. The Google Drive placeholder files are intentionally not tracked by Git.
-
-- `scripts/check_project_files.py`  
-  Lightweight check for expected repository files and local data availability.
-
-## Data Sources
-
-The project uses three linked data sources:
-
-1. Smart Meter Energy Consumption Data in London Households  
-   London Datastore: https://data.london.gov.uk/dataset/00326043-62b6-47a8-9a49-1aa226b7e2c4/
-
-2. Weather and holiday covariates  
-   Weather files are included in the London smart meter dataset structure used by the notebooks. UK bank holiday dates are stored in `Colab Notebooks/smart_meter_data/uk_bank_holidays.csv`.
-
-3. Historic GB generation mix and carbon intensity  
-   NESO Data Portal: https://www.neso.energy/data-portal/historic-generation-mix
-
-The raw London smart meter files are large, around 10 GB unzipped in the source dataset. They are not committed directly to GitHub. See `data/README.md` for the expected folder structure.
+See `data/README.md` for download sources and exact expected layout.
 
 ## Setup
 
@@ -73,32 +69,21 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-If running on Google Colab, install the same packages at the top of the notebook as needed.
-
 ## Reproducing Results
 
-Place the raw and auxiliary data under the paths described in `data/README.md`, then run the notebooks in this order:
+Run notebooks in this order:
 
-1. `Colab Notebooks/Machine Learning Class Project.ipynb`
-   - Builds the cleaned feature panel from the London smart meter, weather, holiday, and household metadata files.
-   - Trains and evaluates seasonal naive, Ridge, LightGBM, and LSTM models.
-   - Produces the cached model files used by downstream scenario analysis.
+1. `notebooks/01_model_training.ipynb`
+   - Generates `data/processed/features_sample500.parquet`
+   - Saves model artifacts to `models/`
 
-2. `Final Code Submissions/[Code Rep]_Policy Description and Scenario Analysis for Demand.ipynb`
-   - Loads the trained LightGBM model.
-   - Runs demand-side counterfactual scenarios for winter 2013-2014.
-   - Reports total demand, evening peak demand, and scenario deltas.
+2. `notebooks/02_demand_policy_scenarios.ipynb`
+   - Saves policy scenario summary tables to `results/`
 
-3. `Final Code Submissions/Scenario Modeling and Carbon Emissions.ipynb`
-   - Merges scenario demand estimates with NESO carbon intensity.
-   - Computes kgCO2 emissions by scenario.
-   - Produces the emissions table used in the final report.
+3. `notebooks/03_carbon_emissions_analysis.ipynb`
+   - Saves emissions scenario outputs to `results/`
 
-4. `Colab Notebooks/Untitled0.ipynb`
-   - Generates `Colab Notebooks/scenario_emissions_results.csv`.
-   - Generates `Colab Notebooks/scenario_emissions_chart.png`.
-
-Before running the full notebooks, you can check whether expected files are present:
+Before a full run, check the repository layout:
 
 ```bash
 python scripts/check_project_files.py
@@ -106,7 +91,7 @@ python scripts/check_project_files.py
 
 ## Main Results
 
-On the common evaluation subset, LightGBM was the strongest model:
+LightGBM was the strongest model on the common evaluation subset.
 
 | Model | MAE | RMSE |
 | --- | ---: | ---: |
@@ -115,7 +100,7 @@ On the common evaluation subset, LightGBM was the strongest model:
 | LSTM | 0.0772 | 0.1735 |
 | LightGBM | 0.0706 | 0.1652 |
 
-The final scenario analysis estimated the following carbon outcomes for the winter analysis period:
+Final winter scenario results:
 
 | Scenario | Demand change | Peak change | Emissions change | kgCO2 saved |
 | --- | ---: | ---: | ---: | ---: |
@@ -127,23 +112,19 @@ The final scenario analysis estimated the following carbon outcomes for the wint
 | Cold + retrofit + ToU flexibility | -10.60% | -16.10% | -10.63% | 20,653.46 |
 | Strong policy package | -15.84% | -23.28% | -15.88% | 30,858.09 |
 
-## Notes on Evaluation
+## Evaluation Note
 
-This is a continuous regression task, so precision-recall curves are not applicable. The notebooks report MAE, RMSE, bias, and related diagnostics instead. For rare-event classification tasks, precision-recall would be required, but this project does not frame the problem as rare-event classification.
+This is a continuous regression task, so precision-recall curves are not applicable. The project reports MAE, RMSE, bias, and scenario-level emissions diagnostics. Precision-recall would be required for rare-event classification tasks, but that is not the formulation used here.
 
 ## Limitations
 
 - The smart meter data covers 2011-2014 and may not represent current London demand, electrification, or tariff behavior.
-- The modeling sample contains 500 stratified households rather than the full dataset.
+- The modeling sample uses 500 stratified households rather than the full dataset.
 - LightGBM has a small negative bias, which may understate demand and emissions in some periods.
-- Retrofit scenarios are modeled through feature transformations rather than a physical building energy model.
-- Time-of-use flexibility is modeled as a scenario overlay, not as a causal price-elasticity estimate.
+- Retrofit scenarios use feature transformations rather than a physical building energy model.
+- Time-of-use flexibility is a scenario overlay, not a causal price-elasticity estimate.
 - NESO carbon intensity is national/grid-level rather than London distribution-network-specific.
 - The analysis does not yet include uncertainty intervals for every policy scenario.
-
-## Large File Policy
-
-GitHub blocks regular Git files larger than 100 MiB and recommends keeping repositories small. For that reason, raw smart meter block files and large derived feature caches are excluded from Git and documented in `data/README.md`. Model artifacts above normal Git comfort thresholds are configured for Git LFS through `.gitattributes`.
 
 ## Authors
 

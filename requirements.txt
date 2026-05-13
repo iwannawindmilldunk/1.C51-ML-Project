@@ -8,5 +8,7 @@ keras
 matplotlib
 seaborn
 shap
+requests
+kagglehub
 jupyter
 ipykernel

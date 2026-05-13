@@ -19,19 +19,19 @@ desktop.ini
 .idea/
 
 # Google Drive placeholders.
-# Keep the live shared Google Docs/Slides in Drive; GitHub gets links in docs/.
+# Live shared Docs/Slides stay in Drive; GitHub keeps links in docs/.
 *.gdoc
 *.gslides
 
 # Large raw and derived data.
-# Download / regenerate these using the instructions in data/README.md.
-Colab Notebooks/smart_meter_data/halfhourly_dataset/
-Colab Notebooks/smart_meter_data/hhblock_dataset/
-Colab Notebooks/smart_meter_data/daily_dataset/
-Colab Notebooks/smart_meter_data/daily_dataset.csv
-Colab Notebooks/cache/features_sample500.parquet
+# Download or regenerate these using data/README.md and the notebooks.
+data/raw/
+data/processed/features_sample500.parquet
+data/processed/features_sample500.pkl
+data/processed/features_sample500.pkl.gz
+data/processed/kagglehub_cache/
 
-# Local logs and temporary exports
+# Local logs and temporary exports.
 *.log
 tmp/
 temp/
