@@ -19,3 +19,5 @@ Run the notebooks from the repository root in this order:
    - Writes final emissions outputs to `results/`.
 
 The `archive/` folder keeps earlier exploratory notebooks for traceability. The three numbered notebooks are the clean execution path for review.
+
+The `executed/` folder keeps rendered snapshots from the original workspace, including intermediate outputs, tables, and plots. Use these when you want to inspect the analysis without rerunning the full raw-data pipeline.

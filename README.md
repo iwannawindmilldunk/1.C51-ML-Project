@@ -12,6 +12,7 @@ The project forecasts half-hourly smart meter electricity consumption, compares 
 |   |-- 01_model_training.ipynb
 |   |-- 02_demand_policy_scenarios.ipynb
 |   |-- 03_carbon_emissions_analysis.ipynb
+|   |-- executed/
 |   `-- archive/
 |-- data/
 |   |-- README.md
@@ -38,6 +39,12 @@ The project forecasts half-hourly smart meter electricity consumption, compares 
 
 - `notebooks/archive/`  
   Earlier supporting notebooks kept for traceability, not the primary execution path.
+
+- `notebooks/executed/`  
+  Executed snapshots copied from the original project workspace. These preserve intermediate outputs, plots, and tables for visual review.
+
+- `results/notebook_figures/`  
+  Extracted PNG figures from the executed notebooks for quick browsing.
 
 ## Data
 
@@ -88,6 +95,8 @@ Before a full run, check the repository layout:
 ```bash
 python scripts/check_project_files.py
 ```
+
+For review without rerunning the full 10 GB pipeline, open the notebooks in `notebooks/executed/` or browse `results/notebook_figures/`.
 
 ## Main Results
 

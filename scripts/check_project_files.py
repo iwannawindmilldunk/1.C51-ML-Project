@@ -11,6 +11,10 @@ REQUIRED_REVIEW_FILES = [
     "notebooks/01_model_training.ipynb",
     "notebooks/02_demand_policy_scenarios.ipynb",
     "notebooks/03_carbon_emissions_analysis.ipynb",
+    "notebooks/executed/01_model_training_executed.ipynb",
+    "notebooks/executed/02_demand_policy_scenarios_executed.ipynb",
+    "notebooks/executed/03_carbon_emissions_analysis_executed.ipynb",
+    "notebooks/executed/04_figure_generation_executed.ipynb",
     "data/README.md",
     "data/carbon/neso_historic_generation_mix.csv",
     "data/metadata/informations_households.csv",
@@ -24,6 +28,7 @@ REQUIRED_REVIEW_FILES = [
     "models/lstm_hh_features.json",
     "results/scenario_emissions_results.csv",
     "results/scenario_emissions_chart.png",
+    "results/notebook_figures/README.md",
     "docs/GOOGLE_DRIVE_DOCUMENTS.md",
 ]
 
